@@ -42,3 +42,4 @@ Player first to bear the other's king (capture all other pieces) wins. Stalemate
 
 ## next steps
 * create the icons for players
+* [text](https://nkarve.github.io/programming/2022/06/08/chessposition.html)
