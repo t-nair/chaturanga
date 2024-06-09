@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chaturanga Game</title>
     <style>
-        /* Add your CSS styles here */
         .board {
             display: grid;
             grid-template-columns: repeat(8, 50px);
@@ -40,12 +39,12 @@
         // Define piece positions for initial setup
         const initialBoard = [
             ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'],
-            ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
+            ['I', 'I', 'I', 'I', 'I', 'I', 'I', 'I'],
             ['_', '_', '_', '_', '_', '_', '_', '_'],
             ['_', '_', '_', '_', '_', '_', '_', '_'],
             ['_', '_', '_', '_', '_', '_', '_', '_'],
             ['_', '_', '_', '_', '_', '_', '_', '_'],
-            ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'],
+            ['i', 'i', 'i', 'i', 'i', 'i', 'i', 'i'],
             ['r', 'n', 'b', 'q', 'k', 'b', 'n', 'r']
         ];
 
@@ -62,7 +61,7 @@
                     if (initialBoard[row][col] !== '_') {
                         const piece = document.createElement('div');
                         piece.classList.add('piece');
-                        piece.style.backgroundImage = `url('images/${initialBoard[row][col].toLowerCase()}.png')`;
+                        piece.style.backgroundImage = `url('images/${initialBoard[row][col].toLowerCase()}.svg')`;
                         square.appendChild(piece);
                     }
 
