@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chaturanga Game</title>
+    <style>
+        /* Add your CSS styles here */
+        .board {
+            display: grid;
+            grid-template-columns: repeat(8, 50px);
+            grid-template-rows: repeat(8, 50px);
+        }
+        .square {
+            width: 50px;
+            height: 50px;
+            border: 1px solid #ccc;
+        }
+        .white {
+            background-color: #f0d9b5;
+        }
+        .black {
+            background-color: #b58863;
+        }
+        .piece {
+            width: 100%;
+            height: 100%;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div class="board" id="chessboard">
+        <!-- Game board squares will be generated here -->
+    </div>
+
+    <script>
+        // Add your JavaScript code here
+        // Define piece positions for initial setup
+        const initialBoard = [
+            ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'],
+            ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
+            ['_', '_', '_', '_', '_', '_', '_', '_'],
+            ['_', '_', '_', '_', '_', '_', '_', '_'],
+            ['_', '_', '_', '_', '_', '_', '_', '_'],
+            ['_', '_', '_', '_', '_', '_', '_', '_'],
+            ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'],
+            ['r', 'n', 'b', 'q', 'k', 'b', 'n', 'r']
+        ];
+
+        // Function to generate the game board
+        function generateBoard() {
+            const boardElement = document.getElementById('chessboard');
+
+            for (let row = 0; row < 8; row++) {
+                for (let col = 0; col < 8; col++) {
+                    const square = document.createElement('div');
+                    square.classList.add('square');
+                    square.classList.add((row + col) % 2 === 0 ? 'white' : 'black');
+
+                    if (initialBoard[row][col] !== '_') {
+                        const piece = document.createElement('div');
+                        piece.classList.add('piece');
+                        piece.style.backgroundImage = `url('images/${initialBoard[row][col].toLowerCase()}.png')`;
+                        square.appendChild(piece);
+                    }
+
+                    boardElement.appendChild(square);
+                }
+            }
+        }
+
+        // Generate the initial board when the page loads
+        window.onload = generateBoard;
+    </script>
+</body>
+</html>
