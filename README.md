@@ -36,3 +36,6 @@ Three different moves:
 Moves like a knight in chess: L-shape
 ### padati/bhata/sainika 
 Moves like a pawn but w/o the double step at the beginning
+
+## next steps
+* create the icons for players
