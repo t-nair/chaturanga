@@ -20,21 +20,21 @@ The name Chaturanga refers to the four divisions of an army:
 * Asva (horse/knight)
 * Padati/Bhata/Sainika (infantry/foot-soldier)
 
-## how each piece moves
-### raja
+## how each piece moves and board representations
+### raja (r)
 One step any direction, NO castling
-### mantri/senapati
+### mantri/senapati (m)
 One step diagonally in any direction
-### ratha
+### ratha (c)
 Horizontally/vertically through any number of unoccupied squares (like a rook)
-### gaja/hasti
+### gaja/hasti(e)
 Three different moves:
 1. Two squares in any diagonal direction - jumping over the first square
 2. One forward step/one step in any diagonal direction
 3. Two squares in any orthogonal direction - jumping over the first square
-### asva
+### asva (h)
 Moves like a knight in chess: L-shape
-### padati/bhata/sainika 
+### padati/bhata/sainika (i)
 Moves like a pawn but w/o the double step at the beginning
 
 ## other rules
