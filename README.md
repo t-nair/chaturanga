@@ -41,5 +41,6 @@ Moves like a pawn but w/o the double step at the beginning
 Player first to bear the other's king (capture all other pieces) wins. Stalemates are(?) possible.
 
 ## next steps
-* create the icons for players
 * [text](https://nkarve.github.io/programming/2022/06/08/chessposition.html)
+* make the board interactive
+* center the board on the screen and scale up (ideally adapts based on screen size)
