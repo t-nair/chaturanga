@@ -68,7 +68,57 @@
                     boardElement.appendChild(square);
                 }
             }
+            const pieces = document.querySelectorAll('.piece');
+            pieces.forEach(piece => {
+                piece.addEventListener('mousedown', startDrag);
+                piece.addEventListener('mouseup', endDrag);
+            });
         }
+
+        let isDragging = false;
+        let offsetX, offsetY, initialX, initialY;
+
+        function startDrag(event) {
+            isDragging = true;
+            const piece = event.target;
+            offsetX = event.clientX - piece.getBoundingClientRect().left;
+            offsetY = event.clientY - piece.getBoundingClientRect().top;
+            initialX = piece.dataset.row;
+            initialY = piece.dataset.col;
+            piece.style.zIndex = 1000; // Ensure the dragged piece is on top
+            piece.style.pointerEvents = 'none'; // Disable pointer events to prevent interaction with other elements
+            document.addEventListener('mousemove', dragPiece);
+        }
+
+        function dragPiece(event) {
+            if (isDragging) {
+                const piece = event.target;
+                const board = document.getElementById('chessboard');
+                piece.style.left = (event.clientX - offsetX - board.getBoundingClientRect().left) + 'px';
+                piece.style.top = (event.clientY - offsetY - board.getBoundingClientRect().top) + 'px';
+            }
+        }
+
+        function endDrag(event) {
+            if (isDragging) {
+                const piece = event.target;
+                const board = document.getElementById('chessboard');
+                const square = document.elementFromPoint(event.clientX, event.clientY);
+                const row = square.dataset.row;
+                const col = square.dataset.col;
+                // Update the position of the piece based on the final mouse position
+                piece.style.left = (col * 50) + 'px';
+                piece.style.top = (row * 50) + 'px';
+                piece.dataset.row = row;
+                piece.dataset.col = col;
+                piece.style.pointerEvents = 'auto'; // Re-enable pointer events
+                document.removeEventListener('mousemove', dragPiece);
+                isDragging = false;
+            }
+        }
+
+
+        
 
         // Generate the initial board when the page loads
         window.onload = generateBoard;
