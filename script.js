@@ -32,6 +32,61 @@ function generateBoard() {
     }
 }
 
+// Function to handle dragging
+function makePiecesDraggable() {
+    const pieces = document.querySelectorAll('.piece');
+    
+    pieces.forEach(piece => {
+        piece.setAttribute('draggable', true);
+        
+        piece.addEventListener('dragstart', dragStart);
+        piece.addEventListener('dragend', dragEnd);
+    });
 
-// Generate the initial board when the page loads
-window.onload = generateBoard;
+    const squares = document.querySelectorAll('.square');
+    
+    squares.forEach(square => {
+        square.addEventListener('dragover', dragOver);
+        square.addEventListener('drop', dropPiece);
+    });
+}
+
+function dragStart(e) {
+    e.dataTransfer.setData('text/plain', e.target.style.backgroundImage);
+    e.target.classList.add('dragging');
+}
+
+function dragEnd(e) {
+    e.target.classList.remove('dragging');
+}
+
+function dragOver(e) {
+    e.preventDefault();  // Necessary to allow a drop
+}
+
+function dropPiece(e) {
+    e.preventDefault();
+    const draggedImage = e.dataTransfer.getData('text/plain');
+    e.target.style.backgroundImage = draggedImage;
+    const piece = document.querySelector('.dragging');
+    piece.style.backgroundImage = '';
+}
+
+// Function to switch sides
+function switchSides() {
+    const boardElement = document.getElementById('gameboard');
+    boardElement.innerHTML = '';  // Clear current board
+
+    // Reverse the board array to switch sides
+    initialBoard.reverse();
+    
+    // Generate the new board
+    generateBoard();
+    makePiecesDraggable();
+}
+
+// Generate the initial board and make pieces draggable when the page loads
+window.onload = function() {
+    generateBoard();
+    makePiecesDraggable();
+};
