@@ -51,13 +51,16 @@ function makePiecesDraggable() {
     });
 }
 
+let draggedPiece = null;
+
 function dragStart(e) {
-    e.dataTransfer.setData('text/plain', e.target.style.backgroundImage);
-    e.target.classList.add('dragging');
+    draggedPiece = e.target;
+    setTimeout(() => e.target.classList.add('invisible'), 0);
 }
 
 function dragEnd(e) {
-    e.target.classList.remove('dragging');
+    e.target.classList.remove('invisible');
+    draggedPiece = null;
 }
 
 function dragOver(e) {
@@ -66,12 +69,16 @@ function dragOver(e) {
 
 function dropPiece(e) {
     e.preventDefault();
-    const draggedImage = e.dataTransfer.getData('text/plain');
-    e.target.style.backgroundImage = draggedImage;
-    const piece = document.querySelector('.dragging');
-    piece.style.backgroundImage = '';
+    
+    // Ensure the target is a valid drop target (an empty square or a square with another piece)
+    if (e.target.classList.contains('square')) {
+        // Move the piece to the new square
+        e.target.appendChild(draggedPiece);
+    } else if (e.target.classList.contains('piece')) {
+        // If dropping on a square that already has a piece, replace it
+        e.target.parentNode.appendChild(draggedPiece);
+    }
 }
-
 // Function to switch sides
 function switchSides() {
     const boardElement = document.getElementById('gameboard');
